@@ -6,10 +6,8 @@ function returnCharsInRange(start, end) {
     let condition = false
 
     if (start > end) {
-        let temp = start
-        start = end
-        end = temp
-        condition = true
+        [start, end] =
+            [end, start]
     }
 
     let output = []

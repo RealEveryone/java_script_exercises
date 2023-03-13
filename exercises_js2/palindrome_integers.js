@@ -5,6 +5,7 @@ function palindromeChecker(numbersList) {
         for (let i = 0; i < numberAsString.length / 2; i++) {
             if (numberAsString[i] !== numberAsString[numberAsString.length - i - 1]) {
                 statement = false
+                break
             }
         }
         console.log(statement)
