@@ -1,10 +1,12 @@
 function manageParkingLot(commands) {
     let parkingLot = {}
     let actions = {
-        'IN': (carPlate) => {
-            parkingLot[carPlate] = Number(carPlate.match(/\d+/g)[0])
+        'IN': function (carPlate) {
+            if (!parkingLot.hasOwnProperty(carPlate)) {
+                parkingLot[carPlate] = Number(carPlate.match(/\d+/g)[0])
+            }
         },
-        'OUT': (carPlate) => {
+        'OUT': function (carPlate) {
             if (parkingLot.hasOwnProperty(carPlate)) {
                 delete parkingLot[carPlate]
             }
@@ -42,4 +44,4 @@ function manageParkingLot(commands) {
 }
 
 
-manageParkingLot(['d, CA244AA','IN, CA2822UU'])
+manageParkingLot(['d, CA244AA', 'IN, CA2822UU'])

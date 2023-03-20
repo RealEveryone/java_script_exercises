@@ -1,5 +1,5 @@
 function registerHeroes(heroList) {
-    let heroLibrary = {}
+    let heroLibrary = []
     class Hero {
         constructor(name, level, items = []) {
             this.name = name;
@@ -20,24 +20,19 @@ function registerHeroes(heroList) {
             items = splitedElements[2].split(', ')
         }
 
-        heroLibrary[name] = new Hero(name, Number(level), items)
+        heroLibrary.push(new Hero(name, Number(level), items))
 
     }
     function sortAndPrint() {
-        let sortedLibrary = []
-        for (var hero in heroLibrary) {
-            sortedLibrary.push([hero, heroLibrary[hero].level])
-        }
-        sortedLibrary.sort((first, second) => {
-            return first[1] - second[1]
+        let sortedLibrary = heroLibrary.sort((first, second) => {
+            return first.level - second.level
         })
 
         let output = ''
-        for (const obj of sortedLibrary) {
-            let hero = obj[0]
-            output += `Hero: ${hero}\nlevel => ${heroLibrary[hero].level}\n`
-            if (heroLibrary[hero].items.length > 0) {
-                output += `items => ${heroLibrary[hero].items.join(', ')}\n`
+        for (const {name, level, items} of sortedLibrary) {
+            output += `Hero: ${name}\nlevel => ${level}\n`
+            if (items.length > 0) {
+                output += `items => ${items.join(', ')}\n`
             }
         }
         console.log(output.trim())
